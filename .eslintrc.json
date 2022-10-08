@@ -5,30 +5,48 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "standard",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:prettier/recommended"
   ],
-  "overrides": [],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  },
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "react/display-name": "off",
-    "prettier/prettier": "error",
-    "react/jsx-one-expression-per-line": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-filename-extension": [
-      1,
+    "react/function-component-definition": [
+      "off",
+      { "namedComponents": "function-declaration" }
+    ],
+    "prettier/prettier": [
+      "warn",
       {
-        "extensions": [".tsx"]
+        "endOfLine": "auto"
       }
     ],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "import/prefer-default-export": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "import/extensions": "off"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
