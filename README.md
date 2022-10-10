@@ -44,3 +44,21 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+<!--  -->
+Instrução para rodar a aplicação:
+  * Após clonar o repositório basta abrir o terminal e executar o comando yarn install para instalar as dependências
+  * Após a instalação executar yarn start
+
+OBS: É necessário ter na raiz do projeto um arquivo .env com as seguintes variáveis
+  * REACT_APP_API_BASE_URL => url base da api (https://mmo-games.p.rapidapi.com)
+  * REACT_APP_RAPIDAPI_KEY => key da rapidapi para evitar erro de cors
+  * REACT_APP_RAPIDAPI_HOST rapidapi host (mmo-games.p.rapidapi.com)
+
+  Para obter a key da rapidapi basta seguir as seguintes instruções:
+    * Acessar https://rapidapi.com/digiwalls/api/mmo-games este link pode ser encontrado também em
+      https://www.mmobomb.com/api no tópico 'CORS Support'
+    * Logo após basta logar/cadastrar na rapidapi e abrir um endpoint de teste
+      basca copiar a X-RapidAPI-Key e aplicar no arquivo .env do projeto
+
+<!--  -->

@@ -1,0 +1,27 @@
+.ril__navButtonPrev {
+  left: 0;
+  background: url('../../assets/img/chevron-left.svg') no-repeat center !important;
+}
+
+.ril__navButtonNext {
+  right: 0;
+  background: url('../../assets/img/chevron-right.svg') no-repeat center !important;
+}
+
+.ril__closeButton {
+  background: url('../../assets/img/icon-close.svg') no-repeat center !important;
+}
+
+.ril__zoomInButton {
+  background: url('../../assets/img/zoom-in.svg') no-repeat center !important;
+  height: 25px;
+}
+
+.ril__zoomOutButton {
+  background: url('../../assets/img/zoom-out.svg') no-repeat center !important;
+  height: 25px;
+}
+
+.ril__image {
+  height: 100% !important;
+}
