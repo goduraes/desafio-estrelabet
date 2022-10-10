@@ -121,7 +121,7 @@ export default () => {
             dangerouslySetInnerHTML={{ __html: game?.description }}
           />
 
-          <div className="grid grid-cols-4 gap-5 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
             {game?.screenshots.map(
               (el: { id: number; image: string }, i: number) => (
                 <div className="group relative m-auto" key={el.id}>

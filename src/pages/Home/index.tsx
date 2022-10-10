@@ -101,8 +101,7 @@ export default () => {
                             type="button"
                             onClick={() => setCategory(el.name)}
                             className={`${
-                              category === el.name &&
-                              'text-blue-500 font-bold'
+                              category === el.name && 'text-blue-500 font-bold'
                             } block px-2 py-3`}
                           >
                             {el.name}
@@ -196,8 +195,7 @@ export default () => {
                       <button
                         type="button"
                         className={`${
-                          category === el.name &&
-                          'text-blue-500 font-bold'
+                          category === el.name && 'text-blue-500 font-bold'
                         }`}
                         onClick={() => setCategory(el.name)}
                       >

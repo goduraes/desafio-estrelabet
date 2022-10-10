@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { gameProps } from '../../types'
+import { gameProps } from '../../types';
 import { format, parseISO } from 'date-fns';
 
 interface ListGamesProps {
@@ -8,11 +8,10 @@ interface ListGamesProps {
 }
 
 export default ({ games }: ListGamesProps) => {
-
   const formatDate = (releaseDate: string) => {
-    if (releaseDate === '0000-00-00') return 'No Date'
-    return format(parseISO(releaseDate), 'yyyy')
-  }
+    if (releaseDate === '0000-00-00') return 'No Date';
+    return format(parseISO(releaseDate), 'yyyy');
+  };
 
   return (
     <>
@@ -33,9 +32,13 @@ export default ({ games }: ListGamesProps) => {
                   {game.title}
                 </Link>
               </h3>
-              <p className="mt-1 text-xs md:text-sm text-gray-500">{game.genre}</p>
+              <p className="mt-1 text-xs md:text-sm text-gray-500">
+                {game.genre}
+              </p>
             </div>
-            <p className="text-xs md:text-sm text-gray-700">{formatDate(game.release_date)}</p>
+            <p className="text-xs md:text-sm text-gray-700">
+              {formatDate(game.release_date)}
+            </p>
           </div>
         </div>
       ))}
