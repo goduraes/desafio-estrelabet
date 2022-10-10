@@ -1,20 +1,20 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: 'https://mmo-games.p.rapidapi.com',
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: {
-    'X-RapidAPI-Key': 'a9e27c64b9mshfe318fa32c18accp1523b7jsn8b55a9345e02',
-    'X-RapidAPI-Host': 'mmo-games.p.rapidapi.com'
+    'X-RapidAPI-Key': process.env.REACT_APP_RAPIDAPI_KEY,
+    'X-RapidAPI-Host': process.env.REACT_APP_RAPIDAPI_HOST
   }
 });
 
 interface getGamesProps {
-  Category: string;
-  Sort: string;
+  category: string;
+  sort: string;
 }
 
-export const getGames = ({Category, Sort}: getGamesProps) => {
-  return API.get(`/games?platform=${Category.toLowerCase()}&sort-by=${Sort.toLowerCase()}`)
+export const getGames = ({category, sort}: getGamesProps) => {
+  return API.get(`/games?platform=${category.toLowerCase()}&sort-by=${sort.toLowerCase()}`)
 };
 
 export const getGame = (id: any) => {

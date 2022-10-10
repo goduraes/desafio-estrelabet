@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import LoadingPage from '../../components/Loading';
+import { format } from 'date-fns';
 import { getGame } from '../../services/api';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/20/solid';
 
 export default () => {
   const { id } = useParams();
-  const [Loading, setLoading] = useState<boolean>(false);
-  const [Error, setError] = useState<boolean>(false);
-  const [Game, setGame] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [erro, setError] = useState<boolean>(false);
+  const [game, setGame] = useState<any>();
 
   const DetailsGame = () => {
     setLoading(true);
@@ -49,29 +50,29 @@ export default () => {
             />
           </Link>
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-            {Game?.title}
+            {game?.title}
           </h1>
         </div>
       </div>
 
-      {!Loading && !Error && (
+      {!loading && !erro && (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {infoGame('Platform', Game?.platform)}
-          {infoGame('Developer', Game?.developer)}
-          {infoGame('Genre', Game?.genre)}
-          {infoGame('Publisher', Game?.publisher)}
-          {infoGame('Release Date', Game?.release_date)}
-          {infoGame('Status', Game?.status)}
+          {infoGame('Platform', game?.platform)}
+          {infoGame('Developer', game?.developer)}
+          {infoGame('Genre', game?.genre)}
+          {infoGame('Publisher', game?.publisher)}
+          {infoGame('Release Date', game?.release_date)}
+          {infoGame('Status', game?.status)}
         </div>
       )}
 
-      {Loading && (
+      {loading && (
         <div className="flex justify-center items-center absolute top-0 bg-gray-100 w-screen h-screen">
           <LoadingPage />
         </div>
       )}
 
-      {!Loading && Error && (
+      {!loading && erro && (
         <div className="flex justify-center items-center h-full pt-8">
           <span className="text-red-500">Houve um erro - Tente novamente mais tarde!</span>
         </div>

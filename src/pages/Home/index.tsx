@@ -1,13 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { getGames } from '../../services/api'
+import { getGames } from '../../services/api';
 import LoadingPage from '../../components/Loading';
 import ListGames from '../../components/ListGames';
-import {
-  ChevronDownIcon,
-  FunnelIcon,
-} from '@heroicons/react/20/solid';
+import { ChevronDownIcon, FunnelIcon } from '@heroicons/react/20/solid';
 
 const sortOptions = [
   { name: 'Alphabetical' },
@@ -15,38 +12,34 @@ const sortOptions = [
   { name: 'Release date' },
   { name: 'Relevance' },
 ];
-const Categories = [
-  { name: 'All' },
-  { name: 'PC' },
-  { name: 'browser' },
-];
+const categories = [{ name: 'All' }, { name: 'PC' }, { name: 'browser' }];
 
 export default () => {
-  const [Loading, setLoading] = useState<boolean>(false);
-  const [Error, setError] = useState<boolean>(false);
-  const [Games, setGames] = useState<any>([]);
-  const [Category, setCategory] = useState<string>('All');
-  const [Sort, setSort] = useState<string>('Alphabetical');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [games, setGames] = useState<any>([]);
+  const [category, setCategory] = useState<string>('All');
+  const [sort, setSort] = useState<string>('Alphabetical');
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 
   const AllGames = () => {
     setError(false);
     setLoading(true);
-    getGames({ Category, Sort })
+    getGames({ category, sort })
       .then(resp => {
-        setGames(resp.data)
+        setGames(resp.data);
       })
       .catch(() => {
         setError(true);
       })
       .finally(() => {
         setLoading(false);
-      })
+      });
   };
 
   useEffect(() => {
     AllGames();
-  }, [Category, Sort]);
+  }, [category, sort]);
 
   return (
     <div id="home">
@@ -97,19 +90,22 @@ export default () => {
 
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
-                    <h3 className="sr-only">Categories</h3>
+                    <h3 className="sr-only">categories</h3>
                     <ul
                       role="list"
                       className="px-2 py-3 font-medium text-gray-900"
                     >
-                      {Categories.map(category => (
-                        <li key={category.name}>
+                      {categories.map(el => (
+                        <li key={el.name}>
                           <button
                             type="button"
-                            onClick={() => setCategory(category.name)}
-                            className={`${Category === category.name && 'text-blue-500 font-bold'} block px-2 py-3`}
+                            onClick={() => setCategory(el.name)}
+                            className={`${
+                              category === el.name &&
+                              'text-blue-500 font-bold'
+                            } block px-2 py-3`}
                           >
-                            {category.name}
+                            {el.name}
                           </button>
                         </li>
                       ))}
@@ -124,7 +120,7 @@ export default () => {
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pt-8 pb-6">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              Games
+              games
             </h1>
 
             <div className="flex items-center">
@@ -158,7 +154,7 @@ export default () => {
                               onClick={() => setSort(option.name)}
                               className={`
                                 ${
-                                  Sort === option.name
+                                  sort === option.name
                                     ? 'font-bold text-blue-500'
                                     : 'text-gray-500'
                                 }
@@ -190,40 +186,45 @@ export default () => {
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
               <form className="hidden lg:block">
-                <h3 className="sr-only">Categories</h3>
+                <h3 className="sr-only">categories</h3>
                 <ul
                   role="list"
                   className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
                 >
-                  {Categories.map(category => (
-                    <li key={category.name}>
+                  {categories.map(el => (
+                    <li key={el.name}>
                       <button
                         type="button"
-                        className={`${Category === category.name && 'text-blue-500 font-bold'}`}
-                        onClick={() => setCategory(category.name)}
+                        className={`${
+                          category === el.name &&
+                          'text-blue-500 font-bold'
+                        }`}
+                        onClick={() => setCategory(el.name)}
                       >
-                        {category.name}
+                        {el.name}
                       </button>
                     </li>
                   ))}
                 </ul>
               </form>
 
-              {/* Games grid */}
+              {/* games grid */}
               <div className="lg:col-span-3">
-                {Loading && (
+                {loading && (
                   <div className="flex justify-center items-center h-full">
                     <LoadingPage />
                   </div>
                 )}
-                {!Loading && Error && (
+                {!loading && error && (
                   <div className="flex justify-center items-center h-full">
-                    <span className="text-red-500">Houve um erro - Tente novamente mais tarde!</span>
+                    <span className="text-red-500">
+                      Houve um erro - Tente novamente mais tarde!
+                    </span>
                   </div>
                 )}
-                {!Loading && !Error && (
+                {!loading && !error && (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 h-96 rounded-lg lg:h-full">
-                    <ListGames games={Games} />
+                    <ListGames games={games} />
                   </div>
                 )}
               </div>
